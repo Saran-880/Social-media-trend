@@ -7,16 +7,17 @@ import requests
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.tools import DuckDuckGoSearchResults, YouTubeSearchTool
+from langchain_groq import ChatGroq
 
 load_dotenv()
 
 
-GEMINI_API_KEY = 'AQ.Ab8RN6IUUHdyKcZXQ0eBh1oXB6iNKAAZSShCgHifXULpr2G0mQ'
+GROQ_API_KEY = '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'
 NEWS_API_KEY = 'fda8b99cd430496087659988e7a97bef'
 
 mcp = FastMCP(name="Social Media Trend Analyzer")
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash",api_key=GEMINI_API_KEY)
+llm = ChatGroq(model="openai/gpt-oss-20b",api_key=GROQ_API_KEY)
 youtube = YouTubeSearchTool()
 duckduckgo = DuckDuckGoSearchResults(output_format="list", num_results=5)
 
