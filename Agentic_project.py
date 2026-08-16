@@ -219,11 +219,21 @@ def research_wikipedia(selected_trend: str) -> list:
         return [{"error": f"Wikipedia research error: {str(e)}"}]
 
 
+import ast
+
 @mcp.tool
 def research_youtube(selected_trend: str) -> list:
     """Relevant YouTube videos about the selected trend."""
     try:
-        return youtube.invoke(f"{selected_trend} latest developments,2")
+        raw = youtube.invoke(f"{selected_trend} latest developments,2")
+        if isinstance(raw, str):
+            try:
+                urls = ast.literal_eval(raw)
+            except (ValueError, SyntaxError):
+                urls = [raw]
+        else:
+            urls = raw
+        return [{"url": u} for u in urls]
     except Exception as e:
         return [{"error": f"YouTube error: {str(e)}"}]
 
