@@ -11,13 +11,9 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
-
-GROQ_API_KEY = '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'
-NEWS_API_KEY = 'fda8b99cd430496087659988e7a97bef'
-
 mcp = FastMCP(name="Social Media Trend Analyzer")
 
-llm = ChatGroq(model="openai/gpt-oss-20b",api_key=GROQ_API_KEY)
+llm = ChatGroq(model="openai/gpt-oss-20b")
 youtube = YouTubeSearchTool()
 duckduckgo = DuckDuckGoSearchResults(output_format="list", num_results=5)
 
@@ -108,8 +104,7 @@ def search_news(domain: str, days: int = 7) -> list:
         "to": end_date.strftime("%Y-%m-%d"),
         "language": "en",
         "sortBy": "relevancy",
-        "pageSize": 20,
-        "apiKey": NEWS_API_KEY
+        "pageSize": 20
     }
     try:
         response = requests.get(url, params=params, timeout=15)
