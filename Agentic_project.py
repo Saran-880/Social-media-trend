@@ -12,7 +12,7 @@ from langchain_groq import ChatGroq
 load_dotenv()
 
 
-GROQ_API_KEY = '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'
+GROQ_API_KEY = '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'
 NEWS_API_KEY = 'fda8b99cd430496087659988e7a97bef'
 
 mcp = FastMCP(name="Social Media Trend Analyzer")
